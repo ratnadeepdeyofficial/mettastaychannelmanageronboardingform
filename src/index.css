@@ -33,6 +33,7 @@
     --border: 30 20% 88%;
     --input: 30 20% 88%;
     --ring: 36 90% 55%;
+    --placeholder: 222 15% 70%;
 
     --radius: 0.75rem;
 
@@ -82,6 +83,7 @@
     --border: 222 30% 20%;
     --input: 222 30% 20%;
     --ring: 36 90% 55%;
+    --placeholder: 222 20% 50%;
   }
 }
 
