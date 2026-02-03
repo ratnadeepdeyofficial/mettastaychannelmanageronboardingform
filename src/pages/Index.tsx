@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Mail, Plus, Send, Hotel } from "lucide-react";
+import { Building2, Mail, Plus, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import RoomCard, { Room, Variant } from "@/components/RoomCard";
 import SuccessModal from "@/components/SuccessModal";
+import mettastayLogo from "@/assets/mettastay-logo.png";
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJE9z-D6GAcVcAeqXrMMU1ltYIcm1HJucuwCUZ2ljLujWmGryY6W2X8OirVohOiQ8e/exec";
 
@@ -115,12 +116,13 @@ export default function Index() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary-foreground/10 backdrop-blur-sm mb-6"
+            className="mb-6"
           >
-            <Hotel className="w-4 h-4 text-accent" />
-            <span className="text-primary-foreground/90 text-sm font-medium">
-              Property Onboarding
-            </span>
+            <img 
+              src={mettastayLogo} 
+              alt="MettaStay - Optimizing Hospitality Business" 
+              className="h-16 md:h-20 mx-auto brightness-0 invert"
+            />
           </motion.div>
 
           <motion.h1
