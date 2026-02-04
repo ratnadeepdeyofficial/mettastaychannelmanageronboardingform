@@ -111,7 +111,7 @@ export default function RoomCard({ room, onUpdate, onRemove }: RoomCardProps) {
                 Number of Rooms
               </Label>
               <Input
-                placeholder="e.g., 1, 2, 3, 4..."
+                placeholder="e.g., 5"
                 value={room.totalRooms}
                 onChange={(e) => updateField("totalRooms", e.target.value)}
               />
