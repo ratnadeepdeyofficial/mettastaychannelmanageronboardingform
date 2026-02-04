@@ -108,10 +108,10 @@ export default function RoomCard({ room, onUpdate, onRemove }: RoomCardProps) {
                 <span className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center">
                   <span className="text-xs">#</span>
                 </span>
-                Room Numbers
+                Number of Rooms
               </Label>
               <Input
-                placeholder="e.g., 101-105"
+                placeholder="e.g., 1, 2, 3, 4..."
                 value={room.totalRooms}
                 onChange={(e) => updateField("totalRooms", e.target.value)}
               />
