@@ -12,6 +12,15 @@ import mettastayLogo from "@/assets/mettastay-logo.png";
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJE9z-D6GAcVcAeqXrMMU1ltYIcm1HJucuwCUZ2ljLujWmGryY6W2X8OirVohOiQ8e/exec";
 
+function fileToBase64(file: File): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = () => resolve(String(reader.result));
+    reader.onerror = reject;
+    reader.readAsDataURL(file);
+  });
+}
+
 let roomCounter = 1;
 
 function generateRoomId() {
@@ -98,10 +107,15 @@ export default function Index() {
     e.preventDefault();
     setIsSubmitting(true);
 
+    const logoBase64 = logo ? await fileToBase64(logo) : "";
+    const propertyImageBase64 = propertyImage ? await fileToBase64(propertyImage) : "";
+
     const payload = {
       ...propertyDetails,
       socialMedia,
       bankDetails,
+      logo: logoBase64,
+      propertyImage: propertyImageBase64,
       roomTypes: rooms.map((room) => ({
         roomId: room.roomId,
         roomType: room.roomType,
