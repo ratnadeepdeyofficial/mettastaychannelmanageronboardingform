@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Building2, Mail, Plus, Send } from "lucide-react";
+import { Plus, Send } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import RoomCard, { Room, Variant } from "@/components/RoomCard";
 import SuccessModal from "@/components/SuccessModal";
+import PropertyDetailsSection, { PropertyDetails } from "@/components/PropertyDetailsSection";
+import BrandingSection from "@/components/BrandingSection";
+import SocialMediaSection, { SocialMediaData } from "@/components/SocialMediaSection";
+import BankDetailsSection, { BankDetailsData } from "@/components/BankDetailsSection";
 import mettastayLogo from "@/assets/mettastay-logo.png";
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxJE9z-D6GAcVcAeqXrMMU1ltYIcm1HJucuwCUZ2ljLujWmGryY6W2X8OirVohOiQ8e/exec";
@@ -39,9 +41,39 @@ function createNewRoom(): Room {
   };
 }
 
+const initialPropertyDetails: PropertyDetails = {
+  propertyName: "",
+  email: "",
+  mobile: "",
+  gstNumber: "",
+  addressLine1: "",
+  addressLine2: "",
+  city: "",
+  state: "",
+  pinCode: "",
+};
+
+const initialSocialMedia: SocialMediaData = {
+  linkedin: "",
+  instagram: "",
+  facebook: "",
+  website: "",
+};
+
+const initialBankDetails: BankDetailsData = {
+  accountHolderName: "",
+  accountNumber: "",
+  ifscCode: "",
+  bankName: "",
+  branchName: "",
+};
+
 export default function Index() {
-  const [propertyName, setPropertyName] = useState("");
-  const [email, setEmail] = useState("");
+  const [propertyDetails, setPropertyDetails] = useState<PropertyDetails>(initialPropertyDetails);
+  const [logo, setLogo] = useState<File | null>(null);
+  const [propertyImage, setPropertyImage] = useState<File | null>(null);
+  const [socialMedia, setSocialMedia] = useState<SocialMediaData>(initialSocialMedia);
+  const [bankDetails, setBankDetails] = useState<BankDetailsData>(initialBankDetails);
   const [rooms, setRooms] = useState<Room[]>([createNewRoom()]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -67,8 +99,9 @@ export default function Index() {
     setIsSubmitting(true);
 
     const payload = {
-      propertyName,
-      email,
+      ...propertyDetails,
+      socialMedia,
+      bankDetails,
       roomTypes: rooms.map((room) => ({
         roomId: room.roomId,
         roomType: room.roomType,
@@ -96,8 +129,11 @@ export default function Index() {
       });
 
       setShowSuccess(true);
-      setPropertyName("");
-      setEmail("");
+      setPropertyDetails(initialPropertyDetails);
+      setLogo(null);
+      setPropertyImage(null);
+      setSocialMedia(initialSocialMedia);
+      setBankDetails(initialBankDetails);
       roomCounter = 1;
       setRooms([createNewRoom()]);
     } catch (error) {
@@ -118,9 +154,9 @@ export default function Index() {
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <img 
-              src={mettastayLogo} 
-              alt="MettaStay - Optimizing Hospitality Business" 
+            <img
+              src={mettastayLogo}
+              alt="MettaStay - Optimizing Hospitality Business"
               className="h-16 md:h-20 mx-auto brightness-0 invert"
             />
           </motion.div>
@@ -148,52 +184,17 @@ export default function Index() {
       {/* Form Container */}
       <div className="max-w-3xl mx-auto px-4 -mt-8 pb-16">
         <form onSubmit={handleSubmit}>
-          {/* Property Info Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
-            className="bg-card rounded-2xl shadow-elevated p-6 md:p-8 mb-8"
-          >
-            <h2 className="font-display text-2xl text-foreground mb-6">
-              Property Information
-            </h2>
+          {/* Property Details */}
+          <PropertyDetailsSection data={propertyDetails} onChange={setPropertyDetails} />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <span className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
-                    <Building2 className="h-4 w-4 text-foreground" />
-                  </span>
-                  Property Name
-                </Label>
-                <Input
-                  required
-                  placeholder="Enter your property name"
-                  value={propertyName}
-                  onChange={(e) => setPropertyName(e.target.value)}
-                  className="h-12 text-base"
-                />
-              </div>
+          {/* Branding */}
+          <BrandingSection onLogoChange={setLogo} onPropertyImageChange={setPropertyImage} />
 
-              <div className="space-y-2">
-                <Label className="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <span className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
-                    <Mail className="h-4 w-4 text-foreground" />
-                  </span>
-                  Email Address
-                </Label>
-                <Input
-                  type="email"
-                  required
-                  placeholder="your@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="h-12 text-base"
-                />
-              </div>
-            </div>
-          </motion.div>
+          {/* Social Media */}
+          <SocialMediaSection data={socialMedia} onChange={setSocialMedia} />
+
+          {/* Bank Details */}
+          <BankDetailsSection data={bankDetails} onChange={setBankDetails} />
 
           {/* Room Cards */}
           <div className="space-y-6 mb-8">
