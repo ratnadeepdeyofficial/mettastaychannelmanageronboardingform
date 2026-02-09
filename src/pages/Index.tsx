@@ -110,7 +110,11 @@ export default function Index() {
     const logoBase64 = logo ? await fileToBase64(logo) : "";
     const propertyImageBase64 = propertyImage ? await fileToBase64(propertyImage) : "";
 
+    const now = new Date();
+    const timestamp = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()} ${now.getHours()}:${String(now.getMinutes()).padStart(2, "0")}:${String(now.getSeconds()).padStart(2, "0")}`;
+
     const payload = {
+      timestamp,
       ...propertyDetails,
       socialMedia,
       bankDetails,
