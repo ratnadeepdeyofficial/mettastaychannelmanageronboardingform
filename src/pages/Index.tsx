@@ -175,7 +175,7 @@ export default function Index() {
             <img
               src={mettastayLogo}
               alt="MettaStay - Optimizing Hospitality Business"
-              className="h-16 md:h-20 mx-auto brightness-0 invert"
+              className="h-16 md:h-20 mx-auto"
             />
           </motion.div>
 
@@ -183,7 +183,7 @@ export default function Index() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display text-4xl md:text-5xl text-primary-foreground mb-4"
+            className="font-display text-4xl md:text-5xl text-foreground mb-4"
           >
             Room Inventory & Pricing
           </motion.h1>
@@ -192,7 +192,7 @@ export default function Index() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-primary-foreground/80 text-lg max-w-xl mx-auto"
+            className="text-muted-foreground text-lg max-w-xl mx-auto"
           >
             Set up your property's room types, configurations, and pricing variants with ease.
           </motion.p>
