@@ -249,13 +249,13 @@ export default function Index() {
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="w-full h-14 text-lg font-medium hero-gradient hover:opacity-90 text-primary-foreground gap-3"
+              className="w-full h-14 text-lg font-medium accent-gradient hover:opacity-90 text-accent-foreground gap-3"
             >
               {isSubmitting ? (
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                  className="w-5 h-5 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full"
+                  className="w-5 h-5 border-2 border-accent-foreground/30 border-t-accent-foreground rounded-full"
                 />
               ) : (
                 <>
