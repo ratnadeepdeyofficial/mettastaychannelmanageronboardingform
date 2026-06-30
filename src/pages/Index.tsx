@@ -102,6 +102,7 @@ export default function Index() {
   const [propertyImage, setPropertyImage] = useState<File | null>(null);
   const [socialMedia, setSocialMedia] = useState<SocialMediaData>(initialSocialMedia);
   const [bankDetails, setBankDetails] = useState<BankDetailsData>(initialBankDetails);
+  const [documents, setDocuments] = useState<Documents>(initialDocuments);
   const [rooms, setRooms] = useState<Room[]>([createNewRoom()]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
@@ -129,6 +130,18 @@ export default function Index() {
     const logoBase64 = logo ? await fileToBase64(logo) : "";
     const propertyImageBase64 = propertyImage ? await fileToBase64(propertyImage) : "";
 
+    const documentBase64 = {
+      udyamCertificate: documents.udyamCertificate ? await fileToBase64(documents.udyamCertificate) : "",
+      gstCertificate: documents.gstCertificate ? await fileToBase64(documents.gstCertificate) : "",
+      cancelledCheque: documents.cancelledCheque ? await fileToBase64(documents.cancelledCheque) : "",
+      bankPassbookFrontPage: documents.bankPassbookFrontPage ? await fileToBase64(documents.bankPassbookFrontPage) : "",
+      ownerPanCard: documents.ownerPanCard ? await fileToBase64(documents.ownerPanCard) : "",
+      aadharCard: documents.aadharCard ? await fileToBase64(documents.aadharCard) : "",
+      latestBankStatement: documents.latestBankStatement ? await fileToBase64(documents.latestBankStatement) : "",
+      tradeLicense: documents.tradeLicense ? await fileToBase64(documents.tradeLicense) : "",
+      leaseAgreement: documents.leaseAgreement ? await fileToBase64(documents.leaseAgreement) : "",
+    };
+
     const now = new Date();
     const timestamp = `${now.getMonth() + 1}/${now.getDate()}/${now.getFullYear()} ${now.getHours()}:${String(now.getMinutes()).padStart(2, "0")}:${String(now.getSeconds()).padStart(2, "0")}`;
 
@@ -139,10 +152,12 @@ export default function Index() {
       bankDetails,
       logo: logoBase64,
       propertyImage: propertyImageBase64,
+      ...documentBase64,
       roomTypes: rooms.map((room) => ({
         roomId: room.roomId,
         roomType: room.roomType,
         totalRooms: room.totalRooms,
+        roomNumbers: room.roomNumbers,
         roomSize: room.roomSize,
         beds: room.beds,
         bathrooms: room.bathrooms,
@@ -174,6 +189,7 @@ export default function Index() {
       setPropertyImage(null);
       setSocialMedia(initialSocialMedia);
       setBankDetails(initialBankDetails);
+      setDocuments(initialDocuments);
       roomCounter = 1;
       setRooms([createNewRoom()]);
     } catch (error) {
@@ -229,6 +245,9 @@ export default function Index() {
 
           {/* Branding */}
           <BrandingSection onLogoChange={setLogo} onPropertyImageChange={setPropertyImage} />
+
+          {/* Document Upload */}
+          <DocumentUploadSection documents={documents} onChange={setDocuments} />
 
           {/* Social Media */}
           <SocialMediaSection data={socialMedia} onChange={setSocialMedia} />
