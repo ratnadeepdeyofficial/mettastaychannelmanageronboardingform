@@ -1,8 +1,9 @@
 import { motion, AnimatePresence } from "framer-motion";
-import { Trash2, Plus, Bed, Bath, Users, Maximize2, DollarSign } from "lucide-react";
+import { Trash2, Plus, Bed, Bath, Users, Maximize2, DollarSign, Hash } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import VariantCard from "./VariantCard";
 
@@ -18,6 +19,7 @@ export interface Room {
   roomId: string;
   roomType: string;
   totalRooms: string;
+  roomNumbers: string;
   roomSize: string;
   beds: string;
   bathrooms: string;
@@ -203,6 +205,23 @@ export default function RoomCard({ room, onUpdate, onRemove }: RoomCardProps) {
               className="h-12 text-lg font-medium"
             />
           </div>
+
+          {/* Room Numbers */}
+          <div className="space-y-2">
+            <Label className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+              <span className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center">
+                <Hash className="h-3 w-3" />
+              </span>
+              Room Numbers
+            </Label>
+            <Textarea
+              placeholder="101,102,103,104 or 101-110"
+              value={room.roomNumbers}
+              onChange={(e) => updateField("roomNumbers", e.target.value)}
+              className="min-h-[80px] text-base"
+            />
+          </div>
+
 
           {/* Variants Section */}
           <div className="pt-4 border-t">

@@ -6,6 +6,7 @@ import RoomCard, { Room, Variant } from "@/components/RoomCard";
 import SuccessModal from "@/components/SuccessModal";
 import PropertyDetailsSection, { PropertyDetails } from "@/components/PropertyDetailsSection";
 import BrandingSection from "@/components/BrandingSection";
+import DocumentUploadSection, { Documents } from "@/components/DocumentUploadSection";
 import SocialMediaSection, { SocialMediaData } from "@/components/SocialMediaSection";
 import BankDetailsSection, { BankDetailsData } from "@/components/BankDetailsSection";
 import mettastayLogo from "@/assets/mettastay-logo.png";
@@ -33,6 +34,7 @@ function createNewRoom(): Room {
     roomId: generateRoomId(),
     roomType: "",
     totalRooms: "",
+    roomNumbers: "",
     roomSize: "",
     beds: "",
     bathrooms: "",
@@ -60,6 +62,23 @@ const initialPropertyDetails: PropertyDetails = {
   city: "",
   state: "",
   pinCode: "",
+  checkinTime: "",
+  checkoutTime: "",
+  facilities: "",
+  amenities: "",
+  privacyPolicy: "",
+};
+
+const initialDocuments: Documents = {
+  udyamCertificate: null,
+  gstCertificate: null,
+  cancelledCheque: null,
+  bankPassbookFrontPage: null,
+  ownerPanCard: null,
+  aadharCard: null,
+  latestBankStatement: null,
+  tradeLicense: null,
+  leaseAgreement: null,
 };
 
 const initialSocialMedia: SocialMediaData = {
