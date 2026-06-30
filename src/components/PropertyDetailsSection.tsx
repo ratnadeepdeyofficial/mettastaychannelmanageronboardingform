@@ -1,7 +1,8 @@
 import { motion } from "framer-motion";
-import { Building2, Mail, Phone, FileText, MapPin } from "lucide-react";
+import { Building2, Mail, Phone, FileText, MapPin, Clock, Sparkles, Coffee, ShieldCheck } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
 
 export interface PropertyDetails {
   propertyName: string;
@@ -13,6 +14,11 @@ export interface PropertyDetails {
   city: string;
   state: string;
   pinCode: string;
+  checkinTime: string;
+  checkoutTime: string;
+  facilities: string;
+  amenities: string;
+  privacyPolicy: string;
 }
 
 interface PropertyDetailsSectionProps {
@@ -161,6 +167,86 @@ export default function PropertyDetailsSection({ data, onChange }: PropertyDetai
               className="h-12 text-base"
             />
           </div>
+        </div>
+      </div>
+
+      {/* Check-in / Check-out / Facilities / Amenities / Privacy Policy */}
+      <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="space-y-2">
+          <Label className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+            <span className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+              <Clock className="h-4 w-4 text-foreground" />
+            </span>
+            Check-in Time
+          </Label>
+          <Input
+            type="time"
+            value={data.checkinTime}
+            onChange={(e) => update("checkinTime", e.target.value)}
+            className="h-12 text-base"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+            <span className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+              <Clock className="h-4 w-4 text-foreground" />
+            </span>
+            Check-out Time
+          </Label>
+          <Input
+            type="time"
+            value={data.checkoutTime}
+            onChange={(e) => update("checkoutTime", e.target.value)}
+            className="h-12 text-base"
+          />
+        </div>
+      </div>
+
+      <div className="mt-6 space-y-4">
+        <div className="space-y-2">
+          <Label className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+            <span className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+              <Coffee className="h-4 w-4 text-foreground" />
+            </span>
+            Facilities
+          </Label>
+          <Textarea
+            placeholder="Enter facilities separated by commas or new lines"
+            value={data.facilities}
+            onChange={(e) => update("facilities", e.target.value)}
+            className="min-h-[100px] text-base"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+            <span className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+              <Sparkles className="h-4 w-4 text-foreground" />
+            </span>
+            Amenities
+          </Label>
+          <Textarea
+            placeholder="Enter amenities separated by commas or new lines"
+            value={data.amenities}
+            onChange={(e) => update("amenities", e.target.value)}
+            className="min-h-[100px] text-base"
+          />
+        </div>
+
+        <div className="space-y-2">
+          <Label className="text-sm font-medium text-muted-foreground flex items-center gap-2">
+            <span className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
+              <ShieldCheck className="h-4 w-4 text-foreground" />
+            </span>
+            Privacy Policy
+          </Label>
+          <Textarea
+            placeholder="Enter your property's privacy policy"
+            value={data.privacyPolicy}
+            onChange={(e) => update("privacyPolicy", e.target.value)}
+            className="min-h-[160px] text-base"
+          />
         </div>
       </div>
     </motion.div>
