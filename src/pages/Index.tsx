@@ -204,30 +204,17 @@ export default function Index() {
     <div className="min-h-screen bg-background">
       {/* Hero Header */}
       <div
-        className="relative py-16 px-4 bg-cover bg-center"
+        className="relative py-20 md:py-28 px-4 bg-cover bg-center"
         style={{ backgroundImage: `url(${headerBg})` }}
       >
-        <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" />
+        <div className="absolute inset-0 bg-background/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/30 to-background/80" />
         <div className="relative max-w-3xl mx-auto text-center">
-
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="mb-6"
-          >
-            <img
-              src={mettastayLogo}
-              alt="MettaStay - Optimizing Hospitality Business"
-              className="h-16 md:h-20 mx-auto"
-            />
-          </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="font-display text-4xl md:text-5xl text-foreground mb-4"
+            className="font-display text-4xl md:text-5xl text-foreground mb-4 drop-shadow-sm"
           >
             Room Inventory & Pricing
           </motion.h1>
@@ -236,12 +223,13 @@ export default function Index() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-muted-foreground text-lg max-w-xl mx-auto"
+            className="text-foreground/80 text-lg max-w-xl mx-auto"
           >
             Set up your property's room types, configurations, and pricing variants with ease.
           </motion.p>
         </div>
       </div>
+
 
       {/* Form Container */}
       <div className="max-w-3xl mx-auto px-4 -mt-8 pb-16">
