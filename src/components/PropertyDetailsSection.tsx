@@ -239,10 +239,10 @@ export default function PropertyDetailsSection({ data, onChange }: PropertyDetai
             <span className="w-8 h-8 rounded-full bg-secondary flex items-center justify-center">
               <ShieldCheck className="h-4 w-4 text-foreground" />
             </span>
-            Privacy Policy
+            Cancellation Policy
           </Label>
           <Textarea
-            placeholder="Enter your property's privacy policy"
+            placeholder="Enter your property's cancellation policy"
             value={data.privacyPolicy}
             onChange={(e) => update("privacyPolicy", e.target.value)}
             className="min-h-[160px] text-base"
