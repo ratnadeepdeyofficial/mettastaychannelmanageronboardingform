@@ -10,6 +10,7 @@ import DocumentUploadSection, { Documents } from "@/components/DocumentUploadSec
 import SocialMediaSection, { SocialMediaData } from "@/components/SocialMediaSection";
 import BankDetailsSection, { BankDetailsData } from "@/components/BankDetailsSection";
 import mettastayLogo from "@/assets/mettastay-logo.png";
+import heroBg from "@/assets/hero-bg.jpg";
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHQdvR6K_qbHleIJyAuKI5JHf8Ve8NkCgkLiItqfl46nzuSJg4vtOf36517apbVyixTw/exec";
 
@@ -200,20 +201,44 @@ export default function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen relative">
+      {/* Fixed background image with overlay */}
+      <div
+        className="fixed inset-0 -z-10 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${heroBg})` }}
+        aria-hidden="true"
+      />
+      <div className="fixed inset-0 -z-10 bg-background/85 backdrop-blur-sm" aria-hidden="true" />
+
       {/* Hero Header */}
-      <div className="hero-gradient py-16 px-4">
-        <div className="max-w-3xl mx-auto text-center">
+      <div
+        className="relative py-16 px-4 overflow-hidden"
+        style={{
+          backgroundImage: `linear-gradient(135deg, hsl(var(--background) / 0.75), hsl(var(--background) / 0.55)), url(${heroBg})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
+      >
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2 }}
+          className="absolute inset-0 bg-gradient-to-b from-transparent to-background pointer-events-none"
+          aria-hidden="true"
+        />
+        <div className="max-w-3xl mx-auto text-center relative">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <img
+            <motion.img
               src={mettastayLogo}
               alt="MettaStay - Optimizing Hospitality Business"
-              className="h-16 md:h-20 mx-auto"
+              className="h-16 md:h-20 mx-auto drop-shadow-lg"
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
           </motion.div>
 
