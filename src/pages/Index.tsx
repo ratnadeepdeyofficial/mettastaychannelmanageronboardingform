@@ -10,6 +10,7 @@ import DocumentUploadSection, { Documents } from "@/components/DocumentUploadSec
 import SocialMediaSection, { SocialMediaData } from "@/components/SocialMediaSection";
 import BankDetailsSection, { BankDetailsData } from "@/components/BankDetailsSection";
 import mettastayLogo from "@/assets/mettastay-logo.png";
+import headerBg from "@/assets/header-bg.jpg";
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHQdvR6K_qbHleIJyAuKI5JHf8Ve8NkCgkLiItqfl46nzuSJg4vtOf36517apbVyixTw/exec";
 
@@ -202,8 +203,13 @@ export default function Index() {
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Header */}
-      <div className="hero-gradient py-16 px-4">
-        <div className="max-w-3xl mx-auto text-center">
+      <div
+        className="relative py-16 px-4 bg-cover bg-center"
+        style={{ backgroundImage: `url(${headerBg})` }}
+      >
+        <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" />
+        <div className="relative max-w-3xl mx-auto text-center">
+
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
