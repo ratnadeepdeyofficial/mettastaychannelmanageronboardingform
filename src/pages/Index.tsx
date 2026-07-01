@@ -233,10 +233,12 @@ export default function Index() {
             transition={{ duration: 0.5 }}
             className="mb-6"
           >
-            <img
+            <motion.img
               src={mettastayLogo}
               alt="MettaStay - Optimizing Hospitality Business"
-              className="h-16 md:h-20 mx-auto"
+              className="h-16 md:h-20 mx-auto drop-shadow-lg"
+              animate={{ y: [0, -6, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
           </motion.div>
 
