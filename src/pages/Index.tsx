@@ -10,6 +10,7 @@ import DocumentUploadSection, { Documents } from "@/components/DocumentUploadSec
 import SocialMediaSection, { SocialMediaData } from "@/components/SocialMediaSection";
 import BankDetailsSection, { BankDetailsData } from "@/components/BankDetailsSection";
 import mettastayLogo from "@/assets/mettastay-logo.png";
+import headerBg from "@/assets/header-bg.jpg";
 
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHQdvR6K_qbHleIJyAuKI5JHf8Ve8NkCgkLiItqfl46nzuSJg4vtOf36517apbVyixTw/exec";
 
