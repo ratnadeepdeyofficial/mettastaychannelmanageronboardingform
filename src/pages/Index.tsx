@@ -11,7 +11,7 @@ import SocialMediaSection, { SocialMediaData } from "@/components/SocialMediaSec
 import BankDetailsSection, { BankDetailsData } from "@/components/BankDetailsSection";
 import mettastayLogo from "@/assets/mettastay-logo.png";
 
-const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxxVrAt0QP-h5x1Jc2iSLiKssQv5XKBCY1gAWlhSMIukTV5fl2dUQRpqJMYwHcMQOjRtA/exec";
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxHQdvR6K_qbHleIJyAuKI5JHf8Ve8NkCgkLiItqfl46nzuSJg4vtOf36517apbVyixTw/exec";
 
 function fileToBase64(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
